@@ -1,0 +1,22 @@
+{
+  "name": "p5-sketches",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html --no-cache",
+    "lint": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "p5": "1.4.1"
+  },
+  "devDependencies": {
+    "typescript": "4.6.3",
+    "@types/p5": "1.4.2",
+    "parcel": "2.4.1"
+  }
+}
