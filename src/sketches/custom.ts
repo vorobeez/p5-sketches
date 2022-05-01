@@ -10,6 +10,7 @@ export const ribsSketch = (p: p5) => {
     p.createCanvas(1200, 480);
     p.strokeWeight(2);
     p.frameRate(15);
+    p.noCursor();
 
     const descriptionContainer = p.createDiv();
     descriptionContainer.style('font-size', '20px');
@@ -39,6 +40,7 @@ export const ribsSketch = (p: p5) => {
       p.line(i * gap, 0, endX, endY);
       p.line(i * gap, p.height, endX, endY);
     }
+
   };
 
   p.mouseWheel = (event: { delta: number }) => {
