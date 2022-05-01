@@ -3,12 +3,13 @@ import p5 from 'p5';
 const GAP_DELTA = 0.5;
 
 export const ribsSketch = (p: p5) => {
-  let gap = 8;
+  let gap = 16;
   let waveIsRunning = false;
 
   p.setup = () => {
     p.createCanvas(1200, 480);
     p.strokeWeight(2);
+    p.frameRate(15);
 
     const descriptionContainer = p.createDiv();
     descriptionContainer.style('font-size', '20px');
