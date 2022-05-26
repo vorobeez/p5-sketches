@@ -1,3 +1,7 @@
+// This sketches inspired by the book "Getting Started with p5.js: Making Interactive Graphics in JavaScript and Processing" 
+// By Lauren McCarthy, Casey Reas and Ben Fry
+// Link: https://www.amazon.com/Getting-Started-p5-js-Interactive-JavaScript-ebook/dp/B016VF1G3W
+
 import p5 from 'p5';
 
 export const sketchCh2 = (p: p5) => {
@@ -98,6 +102,49 @@ export const sketchCh4Lines = (p: p5) => {
 
       p.line(i, 0, endX, endY);
       p.line(i, p.height, endX, endY);
+    }
+  };
+};
+
+export const e_4_10 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(480, 120);
+    p.noStroke();
+    p.noLoop();
+  };
+
+  p.draw = () => {
+    p.background(0);
+
+    for (let y = 0; y <= p.height; y += 40) {
+      for (let x = 0; x <= p.width; x += 40) {
+        p.fill(255, 140);
+        p.ellipse(x, y, 40, 40);
+      }
+    }
+  };
+};
+
+export const e_4_12 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(480, 120);
+    p.noLoop();
+  };
+
+  p.draw = () => {
+    let initialRadius = 16;
+    let radius = initialRadius;
+    let initialX = 40;
+
+    p.background(0);
+
+    for (let y = 40; y <= p.height; y += initialRadius / 2) {
+      for (let x = initialX; x <= p.width; x += initialRadius + 2) {
+        p.fill(255);
+        p.ellipse(x, y, radius, radius);
+      };
+      radius *= 0.93;
+      initialX += initialRadius / 2;
     }
   };
 };
