@@ -148,3 +148,94 @@ export const e_4_12 = (p: p5) => {
     }
   };
 };
+
+export const e_5_6_01 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(480, 120);
+    p.strokeWeight(4);
+    p.stroke(0, 102);
+  };
+
+  p.draw = () => {
+    p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
+  };
+};
+
+export const e_5_7_01 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(480, 120);
+    p.stroke(0, 102);
+  };
+
+  p.draw = () => {
+    p.strokeWeight(
+      p.dist(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
+    );
+    p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
+  };
+};
+
+export const e_5_9_01 = (p: p5) => {
+  const easing = 0.1;
+
+  let x = 0;
+  let y = 0;
+  let px = 0;
+  let py = 0;
+
+  p.setup = () => {
+    p.createCanvas(480, 120);
+    p.stroke(0, 102);
+  };
+
+  p.draw = () => {
+    x += (p.mouseX - x) * easing;
+    y += (p.mouseY - y) * easing;
+
+    const weight = p.dist(x, y, px, py);
+
+    p.strokeWeight(weight);
+    p.line(x, y, px, py);
+
+    px = x;
+    py = y;
+  };
+};
+
+export const e_5_10_01 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(240, 120);
+    p.strokeWeight(30);
+  };
+
+  p.draw = () => {
+    p.background(204);
+    p.stroke(102);
+    p.line(40, 0, 70, p.height);
+
+    if (p.mouseIsPressed) {
+      p.stroke(0);
+    }
+
+    p.line(0, 70, p.width, 50);
+  };
+};
+
+export const e_5_23_01 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(240, 120);
+    p.strokeWeight(12);
+  };
+
+  p.draw = () => {
+    p.background(204);
+    p.stroke(102);
+    p.line(p.mouseX, 0, p.mouseX, p.height);
+    p.stroke(0);
+
+    const mx = p.map(p.mouseX, 0, p.width, 60, 180);
+    // const mx = p.mouseX / 2 + 60;
+
+    p.line(mx, 0, mx, p.height);
+  };
+};
