@@ -239,3 +239,51 @@ export const e_5_23_01 = (p: p5) => {
     p.line(mx, 0, mx, p.height);
   };
 };
+
+export const e_6_1_1 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(480, 480);
+    p.background(204);
+  };
+
+  p.draw = () => {
+    p.translate(p.mouseX, p.mouseY);
+    p.rect(0, 0, 30, 30);
+  };
+}
+
+export const e_6_1_2 = (p: p5) => {
+  let angleIncrement = p.QUARTER_PI / 20;
+  let radius = 50;
+  let currentAngle = 0;
+  let saveButton: p5.Element;
+
+  p.setup = () => {
+    p.createCanvas(480, 480);
+    p.background(204);
+    p.rectMode(p.CENTER);
+    // p.noiseSeed(104);
+
+    saveButton = p.createButton('save');
+    saveButton.position(10, 500);
+    saveButton.mouseClicked(() => {
+      p.saveCanvas();
+    });
+  };
+
+  p.draw = () => {
+    p.translate(p.width / 2, p.height / 2);
+    let x = p.cos(currentAngle) * radius;
+    let y = p.sin(currentAngle) * radius;
+
+    let noise = p.noise(x, y);
+    let rectDistortion = 1;
+    let radiusDistortion = p.map(noise, 0, 1, 1, 1.006);
+
+    p.rect(x * rectDistortion, y * rectDistortion, 30, 30);
+
+    angleIncrement *= 0.999;
+    currentAngle += angleIncrement;
+    radius *= radiusDistortion;
+  };
+};
