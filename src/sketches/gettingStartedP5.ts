@@ -277,7 +277,7 @@ export const e_6_1_2 = (p: p5) => {
     let y = p.sin(currentAngle) * radius;
 
     let noise = p.noise(x, y);
-    let rectDistortion = 1;
+    let rectDistortion = p.map(noise, 0, 1, 0.95, 1.05);
     let radiusDistortion = p.map(noise, 0, 1, 1, 1.006);
 
     p.rect(x * rectDistortion, y * rectDistortion, 30, 30);
@@ -285,5 +285,115 @@ export const e_6_1_2 = (p: p5) => {
     angleIncrement *= 0.999;
     currentAngle += angleIncrement;
     radius *= radiusDistortion;
+  };
+};
+
+export const e_6_1_3 = (p: p5) => {
+  const easing = 0.05;
+
+  let angleIncrement = p.QUARTER_PI;
+  let radius = 50;
+  let currentAngle = 0;
+  let x = 0;
+  let y = 0;
+
+  let saveButton: p5.Element;
+
+  p.setup = () => {
+    p.createCanvas(480, 480);
+    p.background(204);
+    p.rectMode(p.CENTER);
+
+    saveButton = p.createButton('save');
+    saveButton.position(10, 500);
+    saveButton.mouseClicked(() => {
+      p.saveCanvas();
+    });
+  };
+
+  p.draw = () => {
+    const centerX = p.width / 2;
+    const centerY = p.height / 2;
+    const spiralStepX = p.cos(currentAngle) * radius;
+    const spiralStepY = p.sin(currentAngle) * radius;
+
+    x += (spiralStepX - x) * easing;
+    y += (spiralStepY - y) * easing;
+
+    const noise = p.noise(x, y);
+    const rectDistortion = p.map(noise, 0, 1, 0.8, 1.2);
+    // const rectDistortion = 1;
+
+    p.translate(centerX, centerY);
+    p.rect(x * rectDistortion, y * rectDistortion, 30, 30);
+
+    if (p.dist(x, y, spiralStepX, spiralStepY) < 3) {
+      currentAngle += angleIncrement;
+      radius *= p.map(noise, 0, 1, 1, 1.2);
+      // angleIncrement *= 0.95;
+    }
+  };
+};
+
+export const e_6_2_1 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(120, 120);
+    p.background(204);
+  };
+
+  p.draw = () => {
+    p.translate(p.mouseX, p.mouseY);
+    p.rect(0, 0, 30, 30);
+    p.translate(35, 10);
+    p.rect(0, 0, 15, 15);
+  };
+};
+
+export const e_6_3_1 = (p: p5) => {
+  p.setup = () => {
+    p.createCanvas(120, 120);
+    p.background(204);
+  };
+
+  p.draw = () => {
+    p.rotate(p.mouseX / 100.0);
+    p.translate(40, 30);
+    p.rect(0, 0, 160, 20)
+  };
+};
+
+export const e_6_5_1 = (p: p5) => {
+  let angle = 0.0;
+
+  p.setup = () => {
+    p.createCanvas(500, 500);
+    p.background(204);
+    p.rectMode(p.CENTER);
+  };
+
+  p.draw = () => {
+    p.translate(p.mouseX, p.mouseY);
+    p.rotate(angle);
+    p.rect(0, 0, 30, 30);
+    
+    angle += 0.1;
+  };
+};
+
+export const e_6_5_2 = (p: p5) => {
+  let angle = 0.0;
+
+  p.setup = () => {
+    p.createCanvas(500, 500);
+    p.background(204);
+    p.rectMode(p.CENTER);
+  };
+
+  p.draw = () => {
+    p.translate(p.mouseX, p.mouseY);
+    p.rotate(angle);
+    p.rect(0, 0, 30, 30);
+    
+    angle += 0.01;
   };
 };
